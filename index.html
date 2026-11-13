@@ -1,0 +1,1278 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FFD429">
+<title>Segurança Digital</title>
+
+<style>
+/* =================================
+   PERSONALIZAÇÃO DAS CORES
+================================= */
+
+:root {
+  --yellow: #FFD429;
+  --yellow-light: #FFF5C7;
+  --yellow-dark: #E9B900;
+
+  --blue: #003B71;
+  --blue-light: #07549B;
+  --blue-dark: #00274D;
+
+  --background: #FFFDF5;
+  --white: #FFFFFF;
+  --text: #17324D;
+  --muted: #7B8998;
+
+  --green: #159B69;
+  --red: #D94A4A;
+  --border: #EDE8D7;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #EDEFF2;
+  color: var(--text);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.app {
+  max-width: 480px;
+  min-height: 100vh;
+  margin: auto;
+  background: var(--background);
+  overflow: hidden;
+}
+
+/* CABEÇALHO */
+
+.header {
+  background: var(--yellow);
+  padding: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.logo {
+  width: 45px;
+  height: 45px;
+  background: var(--blue);
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: 900;
+  overflow: hidden;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.brand-name {
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--blue);
+  letter-spacing: .3px;
+}
+
+.brand-sub {
+  font-size: 9px;
+  color: var(--blue);
+  opacity: .7;
+  letter-spacing: 1.3px;
+  margin-top: 4px;
+}
+
+.header-status {
+  font-size: 9px;
+  color: var(--blue);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--green);
+  border-radius: 50%;
+}
+
+/* CONTEÚDO */
+
+.content {
+  padding: 25px 20px 35px;
+}
+
+.eyebrow {
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+
+h1 {
+  font-size: 28px;
+  color: var(--blue);
+  line-height: 1.15;
+  margin-top: 9px;
+  letter-spacing: -.7px;
+}
+
+.description {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 10px;
+}
+
+/* PAINEL PRINCIPAL */
+
+.main-panel {
+  background: var(--yellow);
+  border-radius: 22px;
+  margin-top: 24px;
+  padding: 22px 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+.main-panel:after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border: 1px solid rgba(0,59,113,.09);
+  border-radius: 50%;
+  right: -90px;
+  top: -95px;
+}
+
+.panel-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.panel-label {
+  color: var(--blue);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.panel-title {
+  font-size: 15px;
+  color: var(--blue);
+  font-weight: 900;
+  margin-top: 5px;
+}
+
+.ready-badge {
+  background: rgba(255,255,255,.65);
+  padding: 7px 10px;
+  border-radius: 20px;
+  color: var(--blue);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+/* ESCUDO */
+
+.shield-area {
+  height: 210px;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.shield {
+  width: 112px;
+  height: 126px;
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 10px 12px rgba(0,45,90,.16));
+}
+
+.shield svg {
+  width: 110px;
+  height: 124px;
+  display: block;
+}
+
+
+.shield-caption {
+  position: absolute;
+  bottom: 5px;
+  font-size: 9px;
+  color: var(--blue);
+  font-weight: 900;
+  letter-spacing: 1.6px;
+}
+
+.panel-footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0,59,113,.13);
+  padding-top: 14px;
+}
+
+.metric-label {
+  font-size: 9px;
+  color: var(--blue);
+  opacity: .7;
+}
+
+.metric-value {
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 900;
+  margin-top: 5px;
+}
+
+/* LISTA DE VERIFICAÇÃO */
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 2px 12px;
+}
+
+.section-heading strong {
+  color: var(--blue);
+  font-size: 14px;
+}
+
+.section-heading span {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+
+.check-list {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 3px 15px;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.check-item:last-child {
+  border-bottom: none;
+}
+
+.check-icon {
+  width: 37px;
+  height: 37px;
+  border-radius: 11px;
+  background: var(--yellow-light);
+  color: var(--blue);
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+.check-copy {
+  flex: 1;
+}
+
+.check-copy strong {
+  font-size: 11px;
+  color: var(--blue);
+  display: block;
+}
+
+.check-copy small {
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 4px;
+  display: block;
+}
+
+.item-status {
+  font-size: 9px;
+  font-weight: 900;
+  color: var(--muted);
+}
+
+.item-status.done {
+  color: var(--green);
+}
+
+/* BOTÃO */
+
+.primary-button {
+  width: 100%;
+  background: var(--blue);
+  border: none;
+  color: white;
+  padding: 18px;
+  border-radius: 14px;
+  margin-top: 20px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .5px;
+  box-shadow: 0 7px 16px rgba(0,59,113,.15);
+  transition: .2s;
+}
+
+.primary-button:active {
+  transform: scale(.98);
+}
+
+.primary-button:disabled {
+  opacity: .6;
+  cursor: default;
+}
+
+.secondary-button {
+  width: 100%;
+  background: white;
+  color: var(--blue);
+  border: 1px solid var(--border);
+  padding: 15px;
+  border-radius: 13px;
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.disclaimer {
+  font-size: 9px;
+  color: #9BA6B2;
+  text-align: center;
+  line-height: 1.6;
+  margin: 15px 10px 0;
+}
+
+/* PROGRESSO */
+
+.progress-card {
+  display: none;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  padding: 17px;
+  margin-top: 18px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.progress-track {
+  height: 9px;
+  background: #EDF0F3;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 13px;
+}
+
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  background: var(--yellow-dark);
+  border-radius: 20px;
+  transition: width .3s linear;
+}
+
+.progress-message {
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+.scan-log {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.log-item {
+  font-size: 10px;
+  color: #68798B;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.log-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* RELATÓRIO */
+
+.result-card {
+  display: none;
+  background: white;
+  border: 1px solid #F0D98F;
+  border-radius: 18px;
+  padding: 18px;
+  margin-top: 18px;
+}
+
+.result-header {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+}
+
+.warning-icon {
+  width: 43px;
+  height: 43px;
+  background: var(--yellow-light);
+  color: var(--blue);
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.result-header strong {
+  color: var(--blue);
+  font-size: 13px;
+}
+
+.result-header small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 4px;
+}
+
+.result-description {
+  color: #68798B;
+  font-size: 11px;
+  line-height: 1.7;
+  margin: 14px 0;
+}
+
+.finding {
+  display: flex;
+  justify-content: space-between;
+  background: #FFF9E8;
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 8px;
+  color: #68521C;
+  font-size: 10px;
+}
+
+.finding strong {
+  color: #A47500;
+}
+
+.success-message {
+  display: none;
+  background: #E9F8F0;
+  color: #147A50;
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 11px;
+  line-height: 1.7;
+  font-weight: 800;
+  margin-top: 15px;
+  border: 1px solid #B9E8D0;
+  text-align: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.footer {
+  text-align: center;
+  color: #9BA6B2;
+  font-size: 9px;
+  padding: 0 15px 24px;
+}
+
+@media (min-width: 600px) {
+  body { padding: 24px 0; }
+  .app {
+    border-radius: 25px;
+    min-height: calc(100vh - 48px);
+    box-shadow: 0 20px 60px rgba(0,0,0,.10);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="header">
+
+  <div class="brand">
+    <div class="logo" id="logo">◆</div>
+
+    <div>
+      <div class="brand-name" id="brandName">
+        SEGURANÇA DIGITAL
+      </div>
+
+      <div class="brand-sub">
+        BANCO DO BRASIL
+      </div>
+    </div>
+  </div>
+
+  <div class="header-status">
+    <span class="status-dot"></span>
+    SISTEMA ONLINE
+  </div>
+
+</header>
+
+<main class="content">
+
+  <div class="eyebrow">
+    SEGURANÇA BANCÁRIA
+  </div>
+
+  <h1>
+    Proteja seu celular.<br>
+    Proteja seus dados.
+  </h1>
+
+  <p class="description">
+    Realize uma verificação de segurança para identificar
+    possíveis ameaças que possam comprometer a proteção
+    das suas informações bancárias.
+  </p>
+
+  <!-- PAINEL PRINCIPAL -->
+
+  <section class="main-panel">
+
+    <div class="panel-top">
+
+      <div>
+        <div class="panel-label">
+          CENTRAL DE SEGURANÇA
+        </div>
+
+        <div class="panel-title" id="panelTitle">
+          Pendente de verificação
+        </div>
+      </div>
+
+      <div class="ready-badge" id="readyBadge">
+        AGUARDANDO
+      </div>
+
+    </div>
+
+    <div class="shield-area">
+
+      <div class="shield">
+
+        <svg viewBox="0 0 100 115" fill="none">
+
+          <path
+            d="M50 5 L91 21 V48 C91 76 74 98 50 110 C26 98 9 76 9 48 V21 Z"
+            fill="#003B71"
+            stroke="#07549B"
+            stroke-width="2"
+          />
+
+          <path
+            d="M32 57 L44 69 L69 42"
+            stroke="#FFD429"
+            stroke-width="7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+        </svg>
+
+      </div>
+
+      <div class="shield-caption" id="shieldCaption">
+        PROTEÇÃO DIGITAL
+      </div>
+
+    </div>
+
+    <div class="panel-footer">
+
+      <div>
+        <div class="metric-label">ITENS ANALISADOS</div>
+        <div class="metric-value" id="itemsCount">—</div>
+      </div>
+
+      <div>
+        <div class="metric-label">STATUS</div>
+        <div class="metric-value" id="scanStatus">Pronto</div>
+      </div>
+
+      <div>
+        <div class="metric-label">VERIFICAÇÃO</div>
+        <div class="metric-value" id="scanTime">—</div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ÁREAS DE ANÁLISE -->
+
+  <div class="section-heading">
+    <strong>Áreas de verificação</strong>
+    <span>MONITORAMENTO</span>
+  </div>
+
+  <section class="check-list">
+
+    <div class="check-item">
+      <div class="check-icon">▦</div>
+
+      <div class="check-copy">
+        <strong>Arquivos e documentos</strong>
+        <small>Verificação de arquivos suspeitos</small>
+      </div>
+
+      <span class="item-status" id="s1">PENDENTE</span>
+    </div>
+
+    <div class="check-item">
+      <div class="check-icon">◇</div>
+
+      <div class="check-copy">
+        <strong>Privacidade e dados</strong>
+        <small>Indicadores de exposição de informações</small>
+      </div>
+
+      <span class="item-status" id="s2">PENDENTE</span>
+    </div>
+
+    <div class="check-item">
+      <div class="check-icon">⌁</div>
+
+      <div class="check-copy">
+        <strong>Aplicativos instalados</strong>
+        <small>Verificação de aplicativos suspeitos</small>
+      </div>
+
+      <span class="item-status" id="s3">PENDENTE</span>
+    </div>
+
+    <div class="check-item">
+      <div class="check-icon">◎</div>
+
+      <div class="check-copy">
+        <strong>Conexões e rede</strong>
+        <small>Análise de conexões suspeitas</small>
+      </div>
+
+      <span class="item-status" id="s4">PENDENTE</span>
+    </div>
+
+    <div class="check-item">
+      <div class="check-icon">♧</div>
+
+      <div class="check-copy">
+        <strong>Proteção bancária</strong>
+        <small>Integridade dos indicadores de segurança</small>
+      </div>
+
+      <span class="item-status" id="s5">PENDENTE</span>
+    </div>
+
+  </section>
+
+  <!-- INICIAR -->
+
+  <section id="startArea">
+
+    <button class="primary-button" id="startButton">
+      INICIAR VERIFICAÇÃO →
+    </button>
+
+    <p class="disclaimer">
+      Ambiente Verificado.
+    </p>
+
+  </section>
+
+  <!-- PROGRESSO -->
+
+  <section class="progress-card" id="progressCard">
+
+    <div class="progress-header">
+      <span id="progressLabel">
+        Preparando análise...
+      </span>
+
+      <span id="progressPercent">0%</span>
+    </div>
+
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="progress-message" id="progressMessage">
+      Inicializando módulos de segurança...
+    </div>
+
+    <div class="scan-log" id="scanLog"></div>
+
+  </section>
+
+  <!-- RESULTADO -->
+
+  <section class="result-card" id="resultCard">
+
+    <div class="result-header">
+
+      <div class="warning-icon">!</div>
+
+      <div>
+        <strong>Possíveis ameaças identificadas</strong>
+        <small>Relatório da verificação concluída</small>
+      </div>
+
+    </div>
+
+    <p class="result-description">
+      A verificação simulada identificou indicadores
+      de possíveis vulnerabilidades no dispositivo.
+      Execute a etapa de proteção para concluir a análise.
+    </p>
+
+    <div class="finding">
+      <span>Arquivos suspeitos</span>
+      <strong>2 indicadores</strong>
+    </div>
+
+    <div class="finding">
+      <span>Exposição de dados</span>
+      <strong>1 indicador</strong>
+    </div>
+
+    <div class="finding">
+      <span>Aplicativos suspeitos</span>
+      <strong>1 indicador</strong>
+    </div>
+
+    <div class="finding">
+      <span>Conexões suspeitas</span>
+      <strong>Verificadas</strong>
+    </div>
+
+    <button class="primary-button" id="removeButton">
+      ELIMINAR AMEAÇAS →
+    </button>
+
+    <div class="success-message" id="successMessage">
+      <strong style="display:block;font-size:16px;margin-bottom:8px;">
+        ✓ DISPOSITIVO PROTEGIDO!
+      </strong>
+      Todas as ameaças demonstrativas foram neutralizadas com sucesso.
+      A proteção está ativada nesta etapa do jogo.
+    </div>
+
+    <button class="primary-button hidden" id="continueButton">
+      CONTINUAR →
+    </button>
+
+    <p class="disclaimer">
+      Os resultados e a eliminação são fictícios.
+      Nenhuma ameaça real foi identificada ou removida.
+    </p>
+
+  </section>
+
+</main>
+
+<footer class="footer">
+  SEGURANÇA DIGITAL · BANCO DO BRASIL
+</footer>
+
+</div>
+
+<script>
+
+/* =================================
+   CONFIGURAÇÃO DA IDENTIDADE
+================================= */
+
+const CONFIG = {
+
+  appName: "SEGURANÇA DIGITAL",
+
+  logoText: "◆",
+
+  // Caminho da imagem da logo, se desejar.
+  // Exemplo: "images/logo.png"
+
+  logoImage: "images/logo.jpg",
+
+  // Tempo mínimo da simulação em milissegundos.
+
+  scanDuration: 65000,
+
+  // Endereço da próxima etapa do jogo.
+
+  continueUrl: ""
+
+};
+
+document.getElementById("brandName").textContent =
+  CONFIG.appName;
+
+if (CONFIG.logoImage) {
+
+  const logo = document.getElementById("logo");
+
+  logo.innerHTML = "";
+
+  const img = document.createElement("img");
+
+  img.src = CONFIG.logoImage;
+  img.alt = "Logo";
+
+  logo.appendChild(img);
+
+} else {
+
+  document.getElementById("logo").textContent =
+    CONFIG.logoText;
+
+}
+
+
+/* =================================
+   ELEMENTOS
+================================= */
+
+const startButton =
+  document.getElementById("startButton");
+
+const progressCard =
+  document.getElementById("progressCard");
+
+const resultCard =
+  document.getElementById("resultCard");
+
+const progressFill =
+  document.getElementById("progressFill");
+
+const progressPercent =
+  document.getElementById("progressPercent");
+
+const progressLabel =
+  document.getElementById("progressLabel");
+
+const progressMessage =
+  document.getElementById("progressMessage");
+
+const scanLog =
+  document.getElementById("scanLog");
+
+const statuses = [
+  "s1",
+  "s2",
+  "s3",
+  "s4",
+  "s5"
+];
+
+
+/* =================================
+   ETAPAS DA VERIFICAÇÃO
+================================= */
+
+const stages = [
+
+  {
+    percent: 5,
+    title: "Inicializando sistema...",
+    message: "Preparando os módulos de segurança.",
+    log: "Módulos de proteção inicializados.",
+    status: 0
+  },
+
+  {
+    percent: 15,
+    title: "Verificando arquivos...",
+    message: "Analisando indicadores de arquivos suspeitos.",
+    log: "Estrutura de arquivos de demonstração verificada.",
+    status: 0
+  },
+
+  {
+    percent: 27,
+    title: "Analisando privacidade...",
+    message: "Verificando possíveis exposições de dados.",
+    log: "Indicadores de privacidade analisados.",
+    status: 1
+  },
+
+  {
+    percent: 40,
+    title: "Verificando aplicativos...",
+    message: "Inspecionando aplicativos de demonstração.",
+    log: "Indicadores de aplicativos revisados.",
+    status: 2
+  },
+
+  {
+    percent: 54,
+    title: "Analisando conexões...",
+    message: "Verificando indicadores de rede.",
+    log: "Conexões de exemplo analisadas.",
+    status: 3
+  },
+
+  {
+    percent: 68,
+    title: "Verificando segurança bancária...",
+    message: "Conferindo indicadores de proteção.",
+    log: "Camadas de segurança bancária revisadas.",
+    status: 4
+  },
+
+  {
+    percent: 80,
+    title: "Procurando vulnerabilidades...",
+    message: "Consolidando possíveis pontos de atenção.",
+    log: "Indicadores de vulnerabilidade simulados.",
+    status: 4
+  },
+
+  {
+    percent: 92,
+    title: "Finalizando verificação...",
+    message: "Preparando relatório de segurança.",
+    log: "Relatório de demonstração preparado.",
+    status: 4
+  },
+
+  {
+    percent: 100,
+    title: "Verificação concluída!",
+    message: "Relatório disponível.",
+    log: "Análise demonstrativa concluída.",
+    status: 4
+  }
+
+];
+
+
+/* =================================
+   LOG DA VERIFICAÇÃO
+================================= */
+
+function addLog(message) {
+
+  const line = document.createElement("div");
+
+  line.className = "log-item";
+
+  const dot = document.createElement("span");
+
+  dot.className = "log-dot";
+
+  const text = document.createElement("span");
+
+  text.textContent = message;
+
+  line.append(dot, text);
+
+  scanLog.appendChild(line);
+
+}
+
+
+/* =================================
+   STATUS DAS ÁREAS
+================================= */
+
+function updateStatus(index) {
+
+  const element =
+    document.getElementById(statuses[index]);
+
+  element.textContent = "VERIFICADO";
+
+  element.classList.add("done");
+
+}
+
+
+/* =================================
+   INICIAR ESCANEAMENTO
+================================= */
+
+let scanning = false;
+
+function startScan() {
+
+  if (scanning) return;
+
+  scanning = true;
+
+  startButton.disabled = true;
+
+  startButton.textContent =
+    "VERIFICAÇÃO EM ANDAMENTO...";
+
+  progressCard.style.display = "block";
+
+  document.getElementById("panelTitle").textContent =
+    "Analisando dispositivo";
+
+  document.getElementById("readyBadge").textContent =
+    "ANALISANDO";
+
+  document.getElementById("shieldCaption").textContent =
+    "VERIFICAÇÃO EM ANDAMENTO";
+
+  document.getElementById("scanStatus").textContent =
+    "Analisando";
+
+  scanLog.innerHTML = "";
+
+  const startTime = performance.now();
+
+  let currentStage = 0;
+
+  function animate(now) {
+
+    const elapsed = now - startTime;
+
+    const progress = Math.min(
+      100,
+      (elapsed / CONFIG.scanDuration) * 100
+    );
+
+    progressFill.style.width = progress + "%";
+
+    progressPercent.textContent =
+      Math.floor(progress) + "%";
+
+    document.getElementById("itemsCount").textContent =
+      Math.floor(progress * 12.4).toLocaleString("pt-BR");
+
+    while (
+      currentStage < stages.length &&
+      progress >= stages[currentStage].percent
+    ) {
+
+      const stage = stages[currentStage];
+
+      progressLabel.textContent = stage.title;
+
+      progressMessage.textContent = stage.message;
+
+      addLog(stage.log);
+
+      updateStatus(stage.status);
+
+      currentStage++;
+
+    }
+
+    if (elapsed < CONFIG.scanDuration) {
+
+      requestAnimationFrame(animate);
+
+    } else {
+
+      finishScan();
+
+    }
+
+  }
+
+  requestAnimationFrame(animate);
+
+}
+
+
+/* =================================
+   FINALIZAR VERIFICAÇÃO
+================================= */
+
+function finishScan() {
+
+  scanning = false;
+
+  progressFill.style.width = "100%";
+
+  progressPercent.textContent = "100%";
+
+  progressLabel.textContent =
+    "Verificação concluída!";
+
+  document.getElementById("panelTitle").textContent =
+    "Atenção necessária";
+
+  document.getElementById("readyBadge").textContent =
+    "ALERTA";
+
+  document.getElementById("scanStatus").textContent =
+    "Concluído";
+
+  document.getElementById("scanTime").textContent =
+    "Concluído";
+
+  document.getElementById("shieldCaption").textContent =
+    "ALERTAS IDENTIFICADOS";
+
+  resultCard.style.display = "block";
+
+  startButton.classList.add("hidden");
+
+  resultCard.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+
+}
+
+
+/* =================================
+   ELIMINAR AMEAÇAS
+================================= */
+
+document.getElementById("removeButton")
+.addEventListener("click", function() {
+
+  const button = this;
+
+  button.disabled = true;
+
+  button.textContent =
+    "NEUTRALIZANDO AMEAÇAS...";
+
+  setTimeout(function() {
+
+    button.classList.add("hidden");
+
+    document.getElementById("successMessage")
+      .style.display = "block";
+
+    document.getElementById("continueButton")
+      .classList.remove("hidden");
+
+    document.getElementById("panelTitle").textContent =
+      "Dispositivo protegido";
+
+    document.getElementById("readyBadge").textContent =
+      "PROTEGIDO";
+
+    document.getElementById("readyBadge").style.color =
+      "#159B69";
+
+    document.getElementById("scanStatus").textContent =
+      "Seguro";
+
+    document.getElementById("shieldCaption").textContent =
+      "PROTEÇÃO ATIVADA";
+
+    document.querySelectorAll(".finding strong")
+      .forEach(function(item) {
+
+        item.textContent = "Neutralizado";
+
+        item.style.color = "#159B69";
+
+      });
+
+    document.getElementById("continueButton")
+      .scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+  }, 1800);
+
+});
+
+
+/* =================================
+   CONTINUAR
+================================= */
+
+document.getElementById("continueButton")
+.addEventListener("click", function() {
+
+  if (CONFIG.continueUrl) {
+
+    window.location.href = CONFIG.continueUrl;
+
+  } else {
+
+    alert(
+      "Etapa concluída! Configure o endereço da próxima etapa em CONFIG.continueUrl."
+    );
+
+  }
+
+});
+
+
+/* INICIAR */
+
+startButton.addEventListener("click", startScan);
+
+</script>
+
+</body>
+</html>
